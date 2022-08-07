@@ -1,0 +1,17 @@
+name: Push Branch
+
+on:
+  push:
+    branches:
+      - '*'
+
+env: {}
+
+jobs:
+  call-build:
+    name: Standard Build
+    uses: ./.github/workflows/build.yaml
+    with:
+      solution_name: example-nuget-native-static
+      project_name: Silnith.Tessellation.Static
+    secrets: inherit
