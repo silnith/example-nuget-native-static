@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="NuGet Files">
+      <UniqueIdentifier>{75db5c31-53c9-47aa-a1e6-e5860ab2a3a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -44,5 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Silnith.Tessellation.Static.props">
+      <Filter>NuGet Files</Filter>
+    </None>
+    <None Include="Silnith.Tessellation.Static.targets">
+      <Filter>NuGet Files</Filter>
+    </None>
+    <None Include="Silnith.Tessellation.Static.nuspec">
+      <Filter>NuGet Files</Filter>
+    </None>
+    <None Include="README.md">
+      <Filter>NuGet Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

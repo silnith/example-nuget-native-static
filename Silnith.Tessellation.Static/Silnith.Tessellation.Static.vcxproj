@@ -192,6 +192,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="README.md" />
+    <None Include="Silnith.Tessellation.Static.nuspec" />
+    <None Include="Silnith.Tessellation.Static.props" />
+    <None Include="Silnith.Tessellation.Static.targets" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
