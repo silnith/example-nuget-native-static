@@ -5,9 +5,9 @@
 	<metadata>
 		<id>Silnith.Tessellation.Static</id>
 		<version>1.0.0</version>
-		<description></description>
+		<description>A trivial C++ library for tessellating arbitrary polygons into triangle fans.</description>
 		<authors>silnith</authors>
-		<projectUrl></projectUrl>
+		<projectUrl>https://github.com/silnith/example-nuget-native-static</projectUrl>
 		<license type="expression">AGPL-3.0-or-later</license>
 		<readme>README.md</readme>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -16,7 +16,7 @@
 		<language>en-US</language>
 		<tags>native tessellation</tags>
 		<repository type="git" url="https://github.com/silnith/example-nuget-native-static" />
-		<title></title>
+		<title>Silnith.Tessellation.Static</title>
 		<dependencies>
 			<group targetFramework="native" />
 		</dependencies>
