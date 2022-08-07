@@ -114,7 +114,7 @@ jobs:
         with:
           name: Release-x64
       - name: Create NuGet Package
-        run: nuget pack ${{ inputs.project_name }}/${{ inputs.project_name }}.nuspec -BasePath ${{ inputs.project_name }} -NonInteractive
+        run: nuget pack ${{ inputs.project_name }}/${{ inputs.project_name }}.nuspec -BasePath ${{ inputs.project_name }} -NonInteractive -verbosity detailed
       - name: Upload NuGet Package
         uses: actions/upload-artifact@v3
         with:
