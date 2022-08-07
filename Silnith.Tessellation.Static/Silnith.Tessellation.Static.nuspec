@@ -15,7 +15,7 @@
 		<copyright>silnith.org</copyright>
 		<language>en-US</language>
 		<tags>native tessellation</tags>
-		<repository type="git" url="https://github.com/silnith/example-nuget-native-static" />
+		<repository type="git" url="https://github.com/silnith/example-nuget-native-static.git" />
 		<title>Silnith.Tessellation.Static</title>
 		<dependencies>
 			<group targetFramework="native" />
