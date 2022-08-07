@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: NuGet Restore
-        runs: nuget restore ${{ inputs.solution_name }}.sln -NonInteractive
+        run: nuget restore ${{ inputs.solution_name }}.sln -NonInteractive
       - name: Upload Packages Artifacts
         uses: actions/upload-artifact@v3
         with:
