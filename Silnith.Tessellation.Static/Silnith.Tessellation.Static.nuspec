@@ -23,7 +23,6 @@
 	</metadata>
 	<files>
 		<file src="README.md" target="/" />
-		<file src="../LICENSE" target="/" />
 		<file src="Silnith.Tessellation.Static.props" target="build/native/" />
 		<file src="Silnith.Tessellation.Static.targets" target="build/native/" />
 		<file src="../x64/Debug/Silnith.Tessellation.Static.lib" target="lib/native/x64/Debug/" />
