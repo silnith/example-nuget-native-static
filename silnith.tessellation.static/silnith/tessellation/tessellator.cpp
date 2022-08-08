@@ -1,3 +1,4 @@
+#include <stdexcept>
 #include <silnith/tessellation/tessellator.h>
 
 using namespace silnith::tessellation;
@@ -10,24 +11,25 @@ std::vector<polygon> tessellator::tessellate(polygon const _polygon) const
 
 	if (iter == end)
 	{
-		throw std::exception{ "Polygon must have at least one vertex." };
+		throw std::invalid_argument{ "Polygon must have at least one vertex." };
 	}
 	vertex first{ *iter };
 	iter++;
 
 	if (iter == end)
 	{
-		throw std::exception{ "Polygon must have more than one vertex." };
+		throw std::invalid_argument{ "Polygon must have more than one vertex." };
 	}
 	vertex second{ *iter };
 	iter++;
 
 	if (iter == end)
 	{
-		throw std::exception{ "Polygon must have more than two vertices." };
+		throw std::invalid_argument{ "Polygon must have more than two vertices." };
 	}
 
-	std::vector<polygon> tessellated;
+	std::vector<polygon> tessellated{};
+	tessellated.reserve(vertices.size() - 2);
 	do
 	{
 		vertex third{ *iter };
