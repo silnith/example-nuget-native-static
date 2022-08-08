@@ -12,7 +12,7 @@ jobs:
     uses: ./.github/workflows/build.yaml
     with:
       solution_name: example-nuget-native-static
-      project_name: Silnith.Tessellation.Static
+      project_name: silnith.tessellation.static
     secrets: inherit
   publish:
     name: Publish
