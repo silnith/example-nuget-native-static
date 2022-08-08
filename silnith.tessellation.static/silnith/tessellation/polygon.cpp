@@ -2,8 +2,9 @@
 
 using namespace silnith::tessellation;
 
-polygon::polygon(void) : vertices{ static_cast<std::vector<vertex>::size_type>(3) }
+polygon::polygon(void) : vertices{}
 {
+	vertices.reserve(3);
 }
 
 polygon::polygon(std::initializer_list<vertex> _vertices) : vertices{ _vertices }
