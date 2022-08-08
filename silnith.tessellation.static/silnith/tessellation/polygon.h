@@ -10,7 +10,7 @@ namespace silnith
 		class polygon
 		{
 		public:
-			polygon(std::list<vertex> vertices);
+			polygon(std::initializer_list<vertex> vertices);
 
 			std::list<vertex> get_vertices(void) const;
 

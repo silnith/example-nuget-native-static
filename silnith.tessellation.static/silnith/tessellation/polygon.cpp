@@ -2,7 +2,7 @@
 
 using namespace silnith::tessellation;
 
-polygon::polygon(std::list<vertex> _vertices) : vertices{ _vertices }
+polygon::polygon(std::initializer_list<vertex> _vertices) : vertices{ _vertices }
 {
 }
 

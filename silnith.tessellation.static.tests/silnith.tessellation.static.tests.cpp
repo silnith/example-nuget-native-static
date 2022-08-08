@@ -19,7 +19,9 @@ namespace silnith::tessellation::tests
 			vertex top_right{ 1, 1, 0, 1 };
 			vertex bottom_right{ 1, 0, 0, 1 };
 
-			std::list<polygon> result{ tessellator.tessellate(polygon{ std::list<vertex>{bottom_left, top_left, top_right, bottom_right} }) };
+			polygon square{ bottom_left, top_left, top_right, bottom_right };
+
+			std::list<polygon> result{ tessellator.tessellate(square) };
 
 			Assert::AreEqual(static_cast<size_t>(2), result.size());
 		}

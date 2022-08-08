@@ -31,7 +31,7 @@ std::list<polygon> tessellator::tessellate(polygon _polygon) const
 	{
 		vertex third{ *iter };
 
-		tessellated.push_back(std::list<vertex>{first, second, third});
+		tessellated.push_back(polygon{ first, second, third });
 
 		second = third;
 		iter++;
