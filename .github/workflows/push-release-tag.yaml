@@ -11,7 +11,7 @@ jobs:
   call-build:
     uses: ./.github/workflows/build.yaml
     with:
-      solution_name: example-nuget-native-static
+      solution_file: example-nuget-native-static.sln
       project_name: silnith.tessellation.static
     secrets: inherit
   publish:

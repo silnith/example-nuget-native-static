@@ -3,8 +3,8 @@ name: Build and Test
 on:
   workflow_call:
     inputs:
-      solution_name:
-        description: The name of the solution.
+      solution_file:
+        description: The name of the solution file.
         type: string
         required: true
       project_name:
@@ -24,7 +24,7 @@ jobs:
       - name: Configure GitHub Packages
         run: nuget sources add -Name GitHub -UserName ${{ github.actor }} -Password ${{ secrets.GITHUB_TOKEN }} -Source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -NonInteractive
       - name: NuGet Restore
-        run: nuget restore ${{ inputs.solution_name }}.sln -NonInteractive
+        run: nuget restore ${{ inputs.solution_file }} -NonInteractive
       - name: Upload Packages Artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -56,7 +56,7 @@ jobs:
           name: packages
           path: packages/
       - name: Build
-        run: msbuild ${{ inputs.solution_name }}.sln -p:Configuration=${{ matrix.configuration }} -p:Platform=${{ matrix.platform }}
+        run: msbuild ${{ inputs.solution_file }} -p:Configuration=${{ matrix.configuration }} -p:Platform=${{ matrix.platform }}
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
