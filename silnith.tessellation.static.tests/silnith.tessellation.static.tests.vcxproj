@@ -160,7 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="silnith.tessellation.static.tests.cpp" />
+    <ClCompile Include="tesselator_tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\silnith.tessellation.static\silnith.tessellation.static.vcxproj">

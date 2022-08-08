@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="silnith.tessellation.static.tests.cpp">
+    <ClCompile Include="tesselator_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
