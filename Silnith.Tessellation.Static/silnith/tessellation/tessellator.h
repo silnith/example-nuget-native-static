@@ -3,11 +3,14 @@
 #include <list>
 #include <silnith/tessellation/polygon.h>
 
-namespace silnith::tessellation
+namespace silnith
 {
-	class tessellator
+	namespace tessellation
 	{
-	public:
-		std::list<polygon> tessellate(polygon polygon) const;
-	};
+		class tessellator
+		{
+		public:
+			std::list<polygon> tessellate(polygon polygon) const;
+		};
+	}
 }

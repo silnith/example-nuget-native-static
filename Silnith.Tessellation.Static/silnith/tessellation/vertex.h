@@ -1,21 +1,24 @@
 #pragma once
 
-namespace silnith::tessellation
+namespace silnith
 {
-	class vertex
+	namespace tessellation
 	{
-	public:
-		vertex(double x, double y, double z, double w);
+		class vertex
+		{
+		public:
+			vertex(double x, double y, double z, double w);
 
-		double get_x() const;
-		double get_y() const;
-		double get_z() const;
-		double get_w() const;
+			double get_x() const;
+			double get_y() const;
+			double get_z() const;
+			double get_w() const;
 
-	private:
-		double x;
-		double y;
-		double z;
-		double w;
-	};
+		private:
+			double x;
+			double y;
+			double z;
+			double w;
+		};
+	}
 }

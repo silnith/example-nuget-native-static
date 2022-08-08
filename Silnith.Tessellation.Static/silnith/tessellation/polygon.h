@@ -3,16 +3,19 @@
 #include <list>
 #include <silnith/tessellation/vertex.h>
 
-namespace silnith::tessellation
+namespace silnith
 {
-	class polygon
+	namespace tessellation
 	{
-	public:
-		polygon(std::list<vertex> vertices);
+		class polygon
+		{
+		public:
+			polygon(std::list<vertex> vertices);
 
-		std::list<vertex> get_vertices(void) const;
+			std::list<vertex> get_vertices(void) const;
 
-	private:
-		std::list<vertex> vertices;
-	};
+		private:
+			std::list<vertex> vertices;
+		};
+	}
 }
