@@ -37,8 +37,6 @@
 		<file src="../Release/Silnith.Tessellation.Static.lib" target="lib/native/Win32/Release/" />
 		<file src="../Release/Silnith.Tessellation.Static.xml" target="lib/native/Win32/Release/" />
 		<file src="../Release/Silnith.Tessellation.Static.pdb" target="lib/native/Win32/Release/" />
-		<file src="Silnith/Tessellation/vertex.h" target="include/Silnith/Tessellation/" />
-		<file src="Silnith/Tessellation/polygon.h" target="include/Silnith/Tessellation/" />
-		<file src="Silnith/Tessellation/tessellator.h" target="include/Silnith/Tessellation/" />
+		<file src="**/*.h" target="include/" />
 	</files>
 </package>
