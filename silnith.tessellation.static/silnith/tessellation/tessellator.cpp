@@ -13,7 +13,7 @@ std::vector<polygon> tessellator::tessellate(polygon const _polygon) const
 	{
 		throw std::invalid_argument{ "Polygon must have at least one vertex." };
 	}
-	vertex first{ *iter };
+	vertex const first{ *iter };
 	iter++;
 
 	if (iter == end)
@@ -32,7 +32,7 @@ std::vector<polygon> tessellator::tessellate(polygon const _polygon) const
 	tessellated.reserve(vertices.size() - 2);
 	do
 	{
-		vertex third{ *iter };
+		vertex const third{ *iter };
 
 		tessellated.push_back(polygon{ first, second, third });
 
