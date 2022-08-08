@@ -2,31 +2,32 @@
 
 using namespace silnith::tessellation;
 
-std::list<polygon> tessellator::tessellate(polygon _polygon) const
+std::vector<polygon> tessellator::tessellate(polygon const _polygon) const
 {
-	std::list<vertex> vertices{ _polygon.get_vertices() };
-	std::list<vertex>::const_iterator iter{ vertices.cbegin() };
+	std::vector<vertex> vertices{ _polygon.get_vertices() };
+	std::vector<vertex>::const_iterator iter{ vertices.cbegin() };
+	std::vector<vertex>::const_iterator end{ vertices.cend() };
 
-	if (iter == vertices.cend())
+	if (iter == end)
 	{
 		throw std::exception{ "Polygon must have at least one vertex." };
 	}
 	vertex first{ *iter };
 	iter++;
 
-	if (iter == vertices.cend())
+	if (iter == end)
 	{
 		throw std::exception{ "Polygon must have more than one vertex." };
 	}
 	vertex second{ *iter };
 	iter++;
 
-	if (iter == vertices.cend())
+	if (iter == end)
 	{
 		throw std::exception{ "Polygon must have more than two vertices." };
 	}
 
-	std::list<polygon> tessellated;
+	std::vector<polygon> tessellated;
 	do
 	{
 		vertex third{ *iter };
@@ -35,7 +36,7 @@ std::list<polygon> tessellator::tessellate(polygon _polygon) const
 
 		second = third;
 		iter++;
-	} while (iter != vertices.cend());
+	} while (iter != end);
 
     return tessellated;
 }
