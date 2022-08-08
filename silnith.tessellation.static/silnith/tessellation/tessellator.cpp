@@ -5,7 +5,7 @@ using namespace silnith::tessellation;
 
 std::vector<polygon> tessellator::tessellate(polygon const _polygon) const
 {
-	std::vector<vertex> vertices{ _polygon.get_vertices() };
+	std::vector<vertex> const vertices{ _polygon.get_vertices() };
 	std::vector<vertex>::const_iterator iter{ vertices.cbegin() };
 	std::vector<vertex>::const_iterator end{ vertices.cend() };
 
