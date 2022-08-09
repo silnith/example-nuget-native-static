@@ -4,8 +4,13 @@
 		<ClCompile>
 			<AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ClCompile>
+		<Link Condition="$(Configuration) == 'Debug'">
+			<AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)..\..\lib\native\$(PlatformTarget)\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+		</Link>
+		<Link Condition="$(Configuration) != 'Debug'">
+			<AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)..\..\lib\native\$(PlatformTarget)\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+		</Link>
 		<Link>
-			<AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)..\..\lib\native\$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
 			<AdditionalDependencies>silnith.tessellation.static.lib;%(AdditionalDependencies)</AdditionalDependencies>
 		</Link>
 	</ItemDefinitionGroup>
