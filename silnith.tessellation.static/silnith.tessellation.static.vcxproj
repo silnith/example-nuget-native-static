@@ -25,7 +25,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{83882e0d-40de-4ada-8c72-6008d03f5ab0}</ProjectGuid>
-    <RootNamespace>SilnithTessellationStatic</RootNamespace>
+    <RootNamespace>silnith::tessellation::static</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
