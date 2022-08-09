@@ -31,12 +31,12 @@
 		<file src="../x64/Release/silnith.tessellation.static.lib" target="lib/native/x64/Release/" />
 		<file src="../x64/Release/silnith.tessellation.static.xml" target="lib/native/x64/Release/" />
 		<file src="../x64/Release/silnith.tessellation.static.pdb" target="lib/native/x64/Release/" />
-		<file src="../Debug/silnith.tessellation.static.lib" target="lib/native/Win32/Debug/" />
-		<file src="../Debug/silnith.tessellation.static.xml" target="lib/native/Win32/Debug/" />
-		<file src="../Debug/silnith.tessellation.static.pdb" target="lib/native/Win32/Debug/" />
-		<file src="../Release/silnith.tessellation.static.lib" target="lib/native/Win32/Release/" />
-		<file src="../Release/silnith.tessellation.static.xml" target="lib/native/Win32/Release/" />
-		<file src="../Release/silnith.tessellation.static.pdb" target="lib/native/Win32/Release/" />
+		<file src="../Debug/silnith.tessellation.static.lib" target="lib/native/x86/Debug/" />
+		<file src="../Debug/silnith.tessellation.static.xml" target="lib/native/x86/Debug/" />
+		<file src="../Debug/silnith.tessellation.static.pdb" target="lib/native/x86/Debug/" />
+		<file src="../Release/silnith.tessellation.static.lib" target="lib/native/x86/Release/" />
+		<file src="../Release/silnith.tessellation.static.xml" target="lib/native/x86/Release/" />
+		<file src="../Release/silnith.tessellation.static.pdb" target="lib/native/x86/Release/" />
 		<file src="**/*.h" target="include/" />
 	</files>
 </package>
