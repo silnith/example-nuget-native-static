@@ -4,7 +4,7 @@
 		 xsi:schemaLocation="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd https://raw.githubusercontent.com/NuGet/NuGet.Client/dev/src/NuGet.Core/NuGet.Packaging/compiler/resources/nuspec.xsd">
 	<metadata>
 		<id>silnith.tessellation.static</id>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 		<description>A trivial C++ library for tessellating arbitrary polygons into triangle fans.</description>
 		<authors>silnith</authors>
 		<projectUrl>https://github.com/silnith/example-nuget-native-static</projectUrl>
