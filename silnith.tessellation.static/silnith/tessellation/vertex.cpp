@@ -2,7 +2,7 @@
 
 using namespace silnith::tessellation;
 
-vertex::vertex(void) : x{ 0 }, y{ 0 }, z{ 0 }, w{ 1 }
+vertex::vertex(void) : vertex{ 0, 0, 0, 1 }
 {
 }
 
