@@ -64,11 +64,11 @@ jobs:
         with:
           name: build-${{ matrix.configuration }}-${{ matrix.platform }}
           path: |
-            ARM64/
-            ARM/
-            x64/
             Debug/
             Release/
+            x64/
+            ARM/
+            ARM64/
   test:
     name: Test
     runs-on: windows-2022
