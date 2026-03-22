@@ -14,7 +14,7 @@
 		<developmentDependency>false</developmentDependency>
 		<copyright>silnith.org</copyright>
 		<language>en-US</language>
-		<tags>native tessellation x86 x64 arm</tags>
+		<tags>native tessellation x86 x64 arm arm64</tags>
 		<repository type="git" url="https://github.com/silnith/example-nuget-native-static.git" />
 		<title>silnith.tessellation.static</title>
 		<dependencies>
@@ -43,6 +43,12 @@
         <file src="../ARM/Release/silnith.tessellation.static.lib" target="lib/native/ARM/Release/" />
         <file src="../ARM/Release/silnith.tessellation.static.xml" target="lib/native/ARM/Release/" />
         <file src="../ARM/Release/silnith.tessellation.static.pdb" target="lib/native/ARM/Release/" />
+        <file src="../ARM64/Debug/silnith.tessellation.static.lib" target="lib/native/ARM64/Debug/" />
+        <file src="../ARM64/Debug/silnith.tessellation.static.xml" target="lib/native/ARM64/Debug/" />
+        <file src="../ARM64/Debug/silnith.tessellation.static.pdb" target="lib/native/ARM64/Debug/" />
+        <file src="../ARM64/Release/silnith.tessellation.static.lib" target="lib/native/ARM64/Release/" />
+        <file src="../ARM64/Release/silnith.tessellation.static.xml" target="lib/native/ARM64/Release/" />
+        <file src="../ARM64/Release/silnith.tessellation.static.pdb" target="lib/native/ARM64/Release/" />
 		<file src="**/*.h" target="include/" />
 	</files>
 </package>
