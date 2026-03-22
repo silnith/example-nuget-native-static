@@ -60,7 +60,7 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ matrix.configuration }}-${{ matrix.platform }}
+          name: build-${{ matrix.configuration }}-${{ matrix.platform }}
           path: |
             x64/
             Debug/
@@ -84,7 +84,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v8
         with:
-          name: ${{ matrix.configuration }}-${{ matrix.platform }}
+          name: build-${{ matrix.configuration }}-${{ matrix.platform }}
       - name: Run Tests
         uses: microsoft/vstest-action@v1.0.0
         with:
@@ -102,7 +102,7 @@ jobs:
       - name: Download Builds
         uses: actions/download-artifact@v8
         with:
-          pattern: {Debug|Release}-{x86|x64}
+          pattern: build-*
           merge-multiple: true
       - name: Create NuGet Package
         run: nuget pack ${{ inputs.project_name }}/${{ inputs.project_name }}.nuspec -BasePath ${{ inputs.project_name }} -NonInteractive
