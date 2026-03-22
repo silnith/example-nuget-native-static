@@ -37,6 +37,12 @@
 		<file src="../Release/silnith.tessellation.static.lib" target="lib/native/x86/Release/" />
 		<file src="../Release/silnith.tessellation.static.xml" target="lib/native/x86/Release/" />
 		<file src="../Release/silnith.tessellation.static.pdb" target="lib/native/x86/Release/" />
+        <file src="../ARM/Debug/silnith.tessellation.static.lib" target="lib/native/ARM/Debug/" />
+        <file src="../ARM/Debug/silnith.tessellation.static.xml" target="lib/native/ARM/Debug/" />
+        <file src="../ARM/Debug/silnith.tessellation.static.pdb" target="lib/native/ARM/Debug/" />
+        <file src="../ARM/Release/silnith.tessellation.static.lib" target="lib/native/ARM/Release/" />
+        <file src="../ARM/Release/silnith.tessellation.static.xml" target="lib/native/ARM/Release/" />
+        <file src="../ARM/Release/silnith.tessellation.static.pdb" target="lib/native/ARM/Release/" />
 		<file src="**/*.h" target="include/" />
 	</files>
 </package>
