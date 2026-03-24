@@ -54,4 +54,9 @@
       <Filter>NuGet Files</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.png">
+      <Filter>NuGet Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
