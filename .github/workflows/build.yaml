@@ -99,6 +99,7 @@ jobs:
     strategy:
       matrix:
         platform:
+          # ARM is disabled because Common7\IDE\Extensions\TestPlatform\Extensions\..\testhost.arm.exe is missing.
 #          - ARM
           - ARM64
         configuration:
