@@ -69,8 +69,8 @@ jobs:
             x64/
             ARM/
             ARM64/
-  test:
-    name: Test
+  test-intel:
+    name: Test Intel
     runs-on: windows-2022
     needs:
       - build
@@ -79,7 +79,27 @@ jobs:
         platform:
           - x86
           - x64
-          - ARM
+        configuration:
+          - Debug
+          - Release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Download Artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: build-${{ matrix.configuration }}-${{ matrix.platform }}
+      - name: Run Tests
+        run: '& "$(vswhere -property installationPath)\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" ".\**\*test*.dll" /EnableCodeCoverage'
+  test-arm:
+    name: Test ARM
+    runs-on: windows-11-arm
+    needs:
+      - build
+    strategy:
+      matrix:
+        platform:
+#          - ARM
           - ARM64
         configuration:
           - Debug
@@ -92,13 +112,7 @@ jobs:
         with:
           name: build-${{ matrix.configuration }}-${{ matrix.platform }}
       - name: Run Tests
-        continue-on-error: true
-        # https://github.com/microsoft/vstest-action/issues/31
-        uses: microsoft/vstest-action@v1.0.0
-        with:
-          searchFolder: '.\\'
-          testAssembly: '**\\*test*.dll'
-          codeCoverageEnabled: false
+        run: '& "$(vswhere -property installationPath)\Common7\IDE\Extensions\TestPlatform\vstest.console.arm64.exe" ".\**\*test*.dll" /EnableCodeCoverage'
   package:
     name: Package
     runs-on: windows-2022
