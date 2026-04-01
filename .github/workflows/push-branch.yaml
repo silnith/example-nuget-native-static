@@ -5,13 +5,8 @@ on:
     branches:
       - '*'
 
-env: {}
-
 jobs:
   call-build:
     name: Standard Build
     uses: ./.github/workflows/build.yaml
-    with:
-      solution_file: example-nuget-native-static.sln
-      project_name: silnith.tessellation.static
     secrets: inherit

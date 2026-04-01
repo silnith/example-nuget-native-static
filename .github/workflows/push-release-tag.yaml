@@ -5,26 +5,14 @@ on:
     tags:
       - 'v*'
 
-env: {}
-
 jobs:
   call-build:
+    name: Build
     uses: ./.github/workflows/build.yaml
-    with:
-      solution_file: example-nuget-native-static.sln
-      project_name: silnith.tessellation.static
     secrets: inherit
   publish:
-    name: Publish
-    runs-on: windows-2022
+    name: Push
     needs:
       - call-build
-    steps:
-      - name: Download NuGet Artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: NuGet
-      - name: Configure GitHub Packages
-        run: nuget sources add -Name GitHub -UserName ${{ github.actor }} -Password ${{ secrets.GITHUB_TOKEN }} -Source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -NonInteractive
-      - name: Upload NuGet Package
-        run: nuget push *.nupkg -ApiKey ${{ secrets.GITHUB_TOKEN }} -Source GitHub -NonInteractive
+    uses: silnith/github-workflows/.github/workflows/nuget-push.yaml@main
+    secrets: inherit

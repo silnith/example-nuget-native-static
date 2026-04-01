@@ -2,135 +2,97 @@ name: Build and Test
 
 on:
   workflow_call:
-    inputs:
-      solution_file:
-        description: The name of the solution file.
-        type: string
-        required: true
-      project_name:
-        description: The name of the project.  This should match the NuGet package ID.
-        type: string
-        required: true
-
-env: {}
 
 jobs:
-  setup:
-    name: Setup
-    runs-on: windows-2022
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Configure GitHub Packages
-        run: nuget sources add -Name GitHub -UserName ${{ github.actor }} -Password ${{ secrets.GITHUB_TOKEN }} -Source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -NonInteractive
-      - name: NuGet Restore
-        run: nuget restore ${{ inputs.solution_file }} -NonInteractive
-      - name: Upload Packages Artifacts
-        uses: actions/upload-artifact@v7
-        with:
-          name: packages
-          path: packages/
-  build:
-    name: Build
-    runs-on: windows-2022
+  get-date:
+    name: Date
+    uses: silnith/github-workflows/.github/workflows/bash-get-date.yaml@main
+  nuget-cache:
+    name: NuGet Cache
+    permissions:
+      contents: read
+      packages: read
     needs:
-      - setup
+      - get-date
+    uses: silnith/github-workflows/.github/workflows/nuget-cache-dependencies.yaml@main
+    with:
+      solution-file: example-nuget-native-static.sln
+      year: ${{ needs.get-date.outputs.year }}
+      month: ${{ needs.get-date.outputs.month }}
+      day: ${{ needs.get-date.outputs.day }}
+    secrets: inherit
+  msbuild-intel:
+    name: C++ Intel
+    permissions:
+      contents: read
+      packages: read
+    needs:
+      - get-date
+      - nuget-cache
     strategy:
       matrix:
         platform:
           - x86
           - x64
+        configuration:
+          - Debug
+          - Release
+    uses: silnith/github-workflows/.github/workflows/msbuild-intel.yaml@main
+    with:
+      solution-file: example-nuget-native-static.sln
+      platform: ${{ matrix.platform }}
+      configuration: ${{ matrix.configuration }}
+      year: ${{ needs.get-date.outputs.year }}
+      month: ${{ needs.get-date.outputs.month }}
+      day: ${{ needs.get-date.outputs.day }}
+    secrets: inherit
+  msbuild-arm:
+    name: C++ ARM
+    permissions:
+      contents: read
+      packages: read
+    needs:
+      - get-date
+      - nuget-cache
+    strategy:
+      matrix:
+        platform:
           - ARM
           - ARM64
         configuration:
           - Debug
           - Release
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v3
-        with:
-          msbuild-architecture: x64
-      - name: Download Packages Artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: packages
-          path: packages/
-      - name: Build
-        run: msbuild ${{ inputs.solution_file }} -p:Configuration=${{ matrix.configuration }} -p:Platform=${{ matrix.platform }}
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v7
-        with:
-          name: build-${{ matrix.configuration }}-${{ matrix.platform }}
-          path: |
-            Debug/
-            Release/
-            x64/
-            ARM/
-            ARM64/
-  test-intel:
-    name: Test Intel
-    runs-on: windows-2022
+    uses: silnith/github-workflows/.github/workflows/msbuild-arm.yaml@main
+    with:
+      solution-file: example-nuget-native-static.sln
+      platform: ${{ matrix.platform }}
+      configuration: ${{ matrix.configuration }}
+      year: ${{ needs.get-date.outputs.year }}
+      month: ${{ needs.get-date.outputs.month }}
+      day: ${{ needs.get-date.outputs.day }}
+    secrets: inherit
+  nuget-pack:
+    name: NuGet Pack
+    permissions:
+      contents: read
     needs:
-      - build
-    strategy:
-      matrix:
-        platform:
-          - x86
-          - x64
-        configuration:
-          - Debug
-          - Release
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Download Artifacts
-        uses: actions/download-artifact@v8
-        with:
-          name: build-${{ matrix.configuration }}-${{ matrix.platform }}
-      - name: Run Tests
-        run: '& "$(vswhere -property installationPath)\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" ".\**\*test*.dll" /EnableCodeCoverage'
-  test-arm:
-    name: Test ARM
-    runs-on: windows-11-arm
+      - msbuild-intel
+      - msbuild-arm
+    uses: silnith/github-workflows/.github/workflows/nuget-package.yaml@main
+    with:
+      base-path: silnith.tessellation.static
+      nuspec-file: silnith.tessellation.static.nuspec
+    secrets: inherit
+  vstest-results:
+    name: Publish VSTest Results
+    permissions:
+      checks: write
     needs:
-      - build
-    strategy:
-      matrix:
-        platform:
-          # ARM is disabled because Common7\IDE\Extensions\TestPlatform\Extensions\..\testhost.arm.exe is missing.
-#          - ARM
-          - ARM64
-        configuration:
-          - Debug
-          - Release
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Download Artifacts
-        uses: actions/download-artifact@v8
-        with:
-          name: build-${{ matrix.configuration }}-${{ matrix.platform }}
-      - name: Run Tests
-        run: '& "$(vswhere -property installationPath)\Common7\IDE\Extensions\TestPlatform\vstest.console.arm64.exe" ".\**\*test*.dll" /EnableCodeCoverage'
-  package:
-    name: Package
-    runs-on: windows-2022
-    needs:
-      - build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-      - name: Download Builds
-        uses: actions/download-artifact@v8
-        with:
-          pattern: build-*
-          merge-multiple: true
-      - name: Create NuGet Package
-        run: nuget pack ${{ inputs.project_name }}/${{ inputs.project_name }}.nuspec -BasePath ${{ inputs.project_name }} -NonInteractive
-      - name: Upload NuGet Package
-        uses: actions/upload-artifact@v7
-        with:
-          name: NuGet
-          path: '*.nupkg'
+      - msbuild-intel
+      - msbuild-arm
+    uses: silnith/github-workflows/.github/workflows/publish-test-results.yaml@main
+    with:
+      check-name: C++ Test Results
+      artifact-pattern: msbuild-vstest-test-results-*
+      test-result-files: "**/TestResults/**/*.trx"
+    secrets: inherit
