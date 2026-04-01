@@ -2,6 +2,15 @@ name: Build and Test
 
 on:
   workflow_call:
+    inputs:
+      solution-file:
+        description: The name of the solution file.
+        type: string
+        default: example-nuget-native-static.sln
+      project-name:
+        description: The name of the project.  This should match the NuGet package ID.
+        type: string
+        default: silnith.tessellation.static
 
 jobs:
   get-date:
@@ -16,7 +25,7 @@ jobs:
       - get-date
     uses: silnith/github-workflows/.github/workflows/nuget-cache-dependencies.yaml@main
     with:
-      solution-file: example-nuget-native-static.sln
+      solution-file: ${{ inputs.solution-file }}
       year: ${{ needs.get-date.outputs.year }}
       month: ${{ needs.get-date.outputs.month }}
       day: ${{ needs.get-date.outputs.day }}
@@ -39,7 +48,7 @@ jobs:
           - Release
     uses: silnith/github-workflows/.github/workflows/msbuild-intel.yaml@main
     with:
-      solution-file: example-nuget-native-static.sln
+      solution-file: ${{ inputs.solution-file }}
       platform: ${{ matrix.platform }}
       configuration: ${{ matrix.configuration }}
       year: ${{ needs.get-date.outputs.year }}
@@ -64,7 +73,7 @@ jobs:
           - Release
     uses: silnith/github-workflows/.github/workflows/msbuild-arm.yaml@main
     with:
-      solution-file: example-nuget-native-static.sln
+      solution-file: ${{ inputs.solution-file }}
       platform: ${{ matrix.platform }}
       configuration: ${{ matrix.configuration }}
       year: ${{ needs.get-date.outputs.year }}
@@ -80,8 +89,8 @@ jobs:
       - msbuild-arm
     uses: silnith/github-workflows/.github/workflows/nuget-package.yaml@main
     with:
-      base-path: silnith.tessellation.static
-      nuspec-file: silnith.tessellation.static.nuspec
+      base-path: ${{ inputs.project-name }}
+      nuspec-file: ${{ inputs.project-name }}.nuspec
     secrets: inherit
   vstest-results:
     name: Publish VSTest Results
