@@ -8,10 +8,17 @@ on:
 jobs:
   call-build:
     name: Build
+    permissions:
+      contents: read
+      packages: read
+      checks: write
     uses: ./.github/workflows/build.yaml
     secrets: inherit
   publish:
     name: Push
+    permissions:
+      contents: read
+      packages: write
     needs:
       - call-build
     uses: silnith/github-workflows/.github/workflows/nuget-push.yaml@main

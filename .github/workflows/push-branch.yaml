@@ -7,6 +7,10 @@ on:
 
 jobs:
   call-build:
-    name: Standard Build
+    name: Build
+    permissions:
+      contents: read
+      packages: read
+      checks: write
     uses: ./.github/workflows/build.yaml
     secrets: inherit
